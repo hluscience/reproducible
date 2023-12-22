@@ -13,6 +13,7 @@ num_ratio <- 5
 num_sim <- 50
 method <- c("sprinter", "MEL", "APL", "RAMP", "glinternet", "hierNet", "SIS")
 family <- "binomial"
+set.seed(100)
 
 # Initialize lists to store parameters, training indexes, and evaluation results
 parm_list <- vector("list", num_ratio)
