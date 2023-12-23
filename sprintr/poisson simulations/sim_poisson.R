@@ -13,6 +13,7 @@ num_ratio <- 6
 num_sim <- 50
 method <- c("sprinter", "MEL", "APL", "SIS")
 family <- "poisson"
+set.seed(10)
 
 # Initialize lists to store parameters, training indexes, and evaluation results
 parm_list <- vector("list", num_ratio)
@@ -41,16 +42,16 @@ for (i in 1:num_ratio){
     
     # Control the explosion of poisson response variable
     k <- 1
-    while(sum(data$pr > 30) > 0 && k < 1000){
+    while(sum(data$pr > 30) > 0 && k < 10000){
       data <- data_gen(n = parm_list[[i]]$n, p = parm_list[[i]]$p, compact = parm_list[[i]]$compact)
       k <- k + 1
     }
-    if(k >= 1000) {
+    if(k >= 10000) {
       stop(paste(
         "Execution stopped because the 'pr' rate parameter for the exponential distribution is too large.",
         "This could potentially cause an explosion of Poisson response variables.",
         "Please consider decreasing the standard deviation when generating the normal random matrix for predictors in the parm_gen_poisson.R file."
-        ))
+      ))
     } 
     
     data_list[[j]] <- data
