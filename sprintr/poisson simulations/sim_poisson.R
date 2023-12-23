@@ -13,7 +13,7 @@ num_ratio <- 6
 num_sim <- 50
 method <- c("sprinter", "MEL", "APL", "SIS")
 family <- "poisson"
-set.seed(10)
+set.seed(50)
 
 # Initialize lists to store parameters, training indexes, and evaluation results
 parm_list <- vector("list", num_ratio)
