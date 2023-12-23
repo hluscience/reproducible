@@ -4,18 +4,18 @@ methods <- c("sprinter", "MEL", "SIS", "APL")
 ratios <- 6
 
 # Initialize a nested list to store results
-results <- setNames(lapply(structures, function(x) list(dev = list(), auc = list())), structures)
+results <- setNames(lapply(structures, function(x) list(dev = list())), structures)
 
 # Loop through the structures, methods, and eval list
 for (structure in structures) {
   # Load the dataset for the current structure
   eval.list <- readRDS(paste(structure, "eval list", sep = " "))
   
-  for (metric in metrics) {
-    dev_metric_name <- paste("dev", metric, sep = "_")
+  for (method in methods) {
+    dev_method_name <- paste("dev", method, sep = "_")
     
     for (ratio in 1:ratios) {
-      results[[structure]]$dev[[metric]] <- append(results[[structure]]$dev[[metric]], mean(eval.list[[ratio]][[dev_metric_name]]))
+      results[[structure]]$dev[[method]] <- append(results[[structure]]$dev[[method]], mean(eval.list[[ratio]][[dev_method_name]]))
     }
   }
 }
@@ -79,7 +79,7 @@ for (structure in c("hier", "mix", "anti")) {
 # Add legend
 par(mar=c(1,1,1,1))
 plot.new()
-legend("center", legend=metrics,
+legend("center", legend=methods,
        text.width=c(0.11, 0.073, 0.073, 0.073), 
        col=col, lty=lty, lwd=c(6,6,6,6), pch=pch, cex=4.5, 
        bty="n", ncol=4)
