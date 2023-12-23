@@ -1,32 +1,32 @@
-# Define the structures and metrics
+# Define the structures, methods and ratios
 structures <- c("hier", "mix", "anti")
-metrics <- c("sprinter", "glinternet", "SIS", "hierNet", "MEL", "APL", "RAMP")
-ratio <- 5
+methods <- c("sprinter", "APL", "glinternet", "RAMP", "MEL", "hierNet", "SIS")
+ratios <- 5
 
 # Initialize a nested list to store results
 results <- setNames(lapply(structures, function(x) list(dev = list(), auc = list())), structures)
 
-# Loop through the structures, metrics, and eval list
+# Loop through the structures, methods, and eval list
 for (structure in structures) {
   # Dynamically load the dataset for the current structure
   eval.list <- readRDS(paste(structure, "eval list", sep = " "))
   
-  for (metric in metrics) {
-    dev_metric_name <- paste("dev", metric, sep = "_")
-    auc_metric_name <- paste("auc", metric, sep = "_")
+  for (method in methods) {
+    dev_method_name <- paste("dev", method, sep = "_")
+    auc_method_name <- paste("auc", method, sep = "_")
     
-    for (i in 1:ratio) {
-      results[[structure]]$dev[[metric]] <- append(results[[structure]]$dev[[metric]], mean(eval.list[[i]][[dev_metric_name]]))
-      results[[structure]]$auc[[metric]] <- append(results[[structure]]$auc[[metric]], mean(eval.list[[i]][[auc_metric_name]]))
+    for (ratio in 1:ratios) {
+      results[[structure]]$dev[[method]] <- append(results[[structure]]$dev[[method]], mean(eval.list[[ratio]][[dev_method_name]]))
+      results[[structure]]$auc[[method]] <- append(results[[structure]]$auc[[method]], mean(eval.list[[ratio]][[auc_method_name]]))
     }
   }
 }
 
 
 # Set colors, point characters, and line types
-col <- c("#FF0000", "#69a35e", "pink", "#6d6c6e", "#5077b3", "#8a6aa4", "#ec8c3c")
-lty <- c(1, 2, 2, 3, 4, 5, 6)
-pch <- c(1, 2, 2, 3, 4, 5, 6) 
+col <- c("#FF0000", "#8a6aa4", "#69a35e", "#ec8c3c","#5077b3", "#6d6c6e", "pink")
+pch <- c(1, 5, 2, 6, 4, 3, 2)
+lty <- c(1, 5, 2, 6, 4, 3, 2)
 
 # Define the PDF output
 pdf(file="logistic_plot.pdf", width=24, height=16) 
@@ -50,7 +50,8 @@ for (metric in c("dev", "auc")) {
     xlab <- ifelse(metric == "auc", TeX('\\beta{*}$'), "")
     ylab <- ifelse(metric == "dev" & structure == "hier", "Deviance", 
                    ifelse(metric == "auc" & structure == "hier", "AUC", ""))
-    
+    beta <- c(1, 1.5, 2, 2.5, 3)
+      
     # Adjust margins and fonts
     if (metric == "dev") {
       if (structure == "hier") {
@@ -98,7 +99,7 @@ for (metric in c("dev", "auc")) {
 # Add legend
 par(mar=c(1,1,1,1))
 plot.new()
-legend("center", legend=metrics,
+legend("center", legend=methods,
        text.width=c(0, 0.074, 0.11, 0.087, 0.076, 0.088, 0.076), 
        col=col, lty=lty, lwd=c(6,6,6,6,6,6,6), pch=pch, cex=4.5, 
        bty="n", ncol=7)
