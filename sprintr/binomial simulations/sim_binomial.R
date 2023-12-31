@@ -6,14 +6,14 @@ source("eval_binomial.R")
 source("../method_run.R")
 
 # Setting the parameters for the simulation
-n <- 200
-p <- 150
-stru <- "anti"
-num_ratio <- 5
-num_sim <- 50
+n <- 200 # Number of samples
+p <- 150 # Number of main effects
+stru <- "anti" # Structure type of the simulated data. Options are "anti", "mix", and "hier".
+num_ratio <- 5 # Different main vs. interaction effects signal strength
+num_sim <- 50 # Number of simulations
 method <- c("sprinter", "MEL", "APL", "RAMP", "glinternet", "hierNet", "SIS")
 family <- "binomial"
-set.seed(100)
+set.seed(10)
 
 # Initialize lists to store parameters, training indexes, and evaluation results
 parm_list <- vector("list", num_ratio)
