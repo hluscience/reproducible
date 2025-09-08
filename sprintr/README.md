@@ -71,8 +71,8 @@ From a subfolder, run the simulation followed by the plotting script. For exampl
 ```r
 # Logistic: vary main-effect–interaction ratio
 setwd("binomial_simulations/different_ratio")
-source("ratio_sim_run_anti.R")     # generates results files under ./results/
-source("ratio_plot_generate.R")    # writes plots to ./figures/
+source("ratio_sim_run_anti.R")     # generates results files
+source("ratio_plot_generate.R")    # writes plots
 ```
 
 ### 2) End-to-end reproduction
