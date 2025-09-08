@@ -77,7 +77,7 @@ source("ratio_plot_generate.R")    # writes plots to ./figures/
 
 ### 2) End-to-end reproduction
 
-Each subfolder is self-contained. To reproduce **all** studies, run the `*_sim_run_*.R` scripts in each subfolder first (these will write results), then run the corresponding `*_plot_generate.R` scripts to create PDFs.
+Each subfolder is self-contained. To reproduce **all** studies, run the `_sim_run_.R` scripts in each subfolder first (these will write results), then run the corresponding `_plot_generate.R` scripts to create PDFs.
 
 
 ## Citing
