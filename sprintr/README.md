@@ -49,7 +49,7 @@ The repository is organized by model family and study type. Each subfolder inclu
   ```r
   install.packages("devtools")
   devtools::install_github("hluscience/sprintr")
-````
+  ````
 
 * Baselines commonly used in the studies:
 
