@@ -1,6 +1,6 @@
 # sprintr — Reproducible Numerical Studies
 
-This repository contains code to reproduce the numerical studies for the paper **Reluctant Interaction Modeling in Generalized Linear Models** (Lu & Yu), using the accompanying R package [**`sprintr`**](https://github.com/hluscience/sprintr). It generates all synthetic experiments and plots used to evaluate the proposed interaction-screening framework for GLMs and its comparisons to baselines.
+This repository contains code to reproduce the numerical studies for the paper **Reluctant Interaction Modeling in Generalized Linear Models** (Lu & Yu), using the accompanying R package [`sprintr`](https://github.com/hluscience/sprintr). It generates all synthetic experiments and plots used to evaluate the proposed interaction-screening framework for GLMs and its comparisons to baselines.
 
 
 ## What the code does (at a glance)
@@ -82,5 +82,5 @@ Each subfolder is self-contained. To reproduce **all** studies, run the `_sim_ru
 
 ## Citing
 
-If you use this repository or its results, please cite the paper and the R package [**`sprintr`**](https://github.com/hluscience/sprintr).
+If you use this repository or its results, please cite the paper and the R package [`sprintr`](https://github.com/hluscience/sprintr).
 
